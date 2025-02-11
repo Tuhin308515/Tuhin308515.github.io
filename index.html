@@ -7,12 +7,33 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .fade-in { opacity: 0; transform: translateY(10px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #fafafa; /* Off-white, cream color */
+        }
+        .fade-in { 
+            opacity: 0; 
+            transform: translateY(10px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+        .fade-in.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Highlight effect on hover */
+        .service-box {
+            transition: background-color 0.3s ease;
+        }
+        .service-box:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+        }
     </style>
 </head>
-<body class="bg-white text-black">
+<body class="text-black">
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full bg-white shadow-md py-4 px-6 flex justify-between items-center z-50">
         <h1 class="text-xl font-bold">Morp Central</h1>
@@ -36,19 +57,19 @@
     <section id="services" class="py-24 px-6 text-center">
         <h2 class="text-4xl font-bold fade-in">What We Do for Influencers</h2>
         <div class="mt-12 grid md:grid-cols-2 gap-12 fade-in">
-            <div class="p-6 border rounded-lg">
+            <div class="p-6 border rounded-lg service-box">
                 <h3 class="text-2xl font-semibold">Brand Partnerships</h3>
                 <p class="mt-2 text-gray-600">We connect you with top brands looking for creators like you.</p>
             </div>
-            <div class="p-6 border rounded-lg">
+            <div class="p-6 border rounded-lg service-box">
                 <h3 class="text-2xl font-semibold">Deal Negotiation</h3>
                 <p class="mt-2 text-gray-600">We negotiate the best rates, ensuring you get paid what you're worth.</p>
             </div>
-            <div class="p-6 border rounded-lg">
+            <div class="p-6 border rounded-lg service-box">
                 <h3 class="text-2xl font-semibold">Campaign Management</h3>
                 <p class="mt-2 text-gray-600">We handle contracts, deliverables, and communication.</p>
             </div>
-            <div class="p-6 border rounded-lg">
+            <div class="p-6 border rounded-lg service-box">
                 <h3 class="text-2xl font-semibold">Long-Term Sponsorships</h3>
                 <p class="mt-2 text-gray-600">We help you build lasting brand relationships.</p>
             </div>
