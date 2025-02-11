@@ -9,7 +9,7 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #f5f5dc;
+            background-color: #f5f5dc; /* Light cream */
         }
         .fade-in { 
             opacity: 0; 
@@ -22,6 +22,12 @@
         }
         html {
             scroll-behavior: smooth;
+        }
+        .service-box {
+            transition: background-color 0.3s ease;
+        }
+        .service-box:hover {
+            background-color: #f0f0f0;
         }
         .video-container {
             position: absolute;
@@ -36,11 +42,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            transition: opacity 1s ease-in-out;
-        }
-        .video-hidden {
-            opacity: 0;
         }
         .video-overlay {
             position: absolute;
@@ -58,17 +59,9 @@
     <!-- Hero Section with Video Background -->
     <section class="h-screen flex items-center justify-center text-center px-6 relative overflow-hidden">
         <div class="video-container">
-            <video id="video1" class="active" autoplay muted playsinline>
+            <video id="bgVideo" autoplay muted loop playsinline>
                 <source src="assets/videos/video1.mp4" type="video/mp4">
-            </video>
-            <video id="video2" class="video-hidden" muted playsinline>
-                <source src="assets/videos/video2.mp4" type="video/mp4">
-            </video>
-            <video id="video3" class="video-hidden" muted playsinline>
-                <source src="assets/videos/video3.mp4" type="video/mp4">
-            </video>
-            <video id="video4" class="video-hidden" muted playsinline>
-                <source src="assets/videos/video4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
         </div>
         <div class="video-overlay"></div>
@@ -80,39 +73,25 @@
     </section>
 
     <script>
+        // Video cycling logic
         const videos = [
-            document.getElementById("video1"),
-            document.getElementById("video2"),
-            document.getElementById("video3"),
-            document.getElementById("video4")
+            "assets/videos/video1.mp4",
+            "assets/videos/video2.mp4",
+            "assets/videos/video3.mp4",
+            "assets/videos/video4.mp4"
         ];
+        let currentVideo = 0;
+        const videoElement = document.getElementById("bgVideo");
 
-        let currentVideoIndex = 0;
-
-        function playNextVideo() {
-            let currentVideo = videos[currentVideoIndex];
-            let nextVideoIndex = (currentVideoIndex + 1) % videos.length;
-            let nextVideo = videos[nextVideoIndex];
-
-            nextVideo.classList.remove("video-hidden");
-            nextVideo.currentTime = 0;
-            nextVideo.play();
-
-            setTimeout(() => {
-                currentVideo.classList.add("video-hidden");
-            }, 1000); // 1-second fade effect
-
-            currentVideoIndex = nextVideoIndex;
-        }
-
-        videos.forEach((video, index) => {
-            video.addEventListener("ended", playNextVideo);
+        videoElement.addEventListener("ended", () => {
+            currentVideo = (currentVideo + 1) % videos.length;
+            videoElement.src = videos[currentVideo];
+            videoElement.play();
         });
 
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
         });
     </script>
-
 </body>
 </html>
