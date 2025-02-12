@@ -68,7 +68,7 @@
     <!-- Hero Section with Video Background -->
     <section class="h-screen flex items-center justify-center text-center px-6 relative overflow-hidden">
         <!-- Video Background -->
-        <video autoplay muted loop class="video-background">
+        <video id="video-background" autoplay muted loop class="video-background">
             <source src="assets/videos/video1.mp4" type="video/mp4">
             <source src="assets/videos/video2.mp4" type="video/mp4">
             <source src="assets/videos/video3.mp4" type="video/mp4">
@@ -140,6 +140,16 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
+
+            const video = document.getElementById("video-background");
+            const sources = video.getElementsByTagName("source");
+            let currentVideoIndex = 0;
+
+            video.addEventListener("ended", () => {
+                currentVideoIndex = (currentVideoIndex + 1) % sources.length;
+                video.src = sources[currentVideoIndex].src;
+                video.play();
+            });
         });
     </script>
 </body>
