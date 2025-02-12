@@ -139,11 +139,16 @@
     <section id="contact" class="py-24 px-6 text-center bg-gray-50">
         <h2 class="text-4xl font-bold fade-in">Let’s Work Together</h2>
         <p class="mt-4 text-lg text-gray-600">Apply now to start getting brand deals.</p>
-        <form class="mt-8 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md fade-in">
-            <input type="text" placeholder="Your Name" class="w-full p-3 border rounded mb-4">
-            <input type="email" placeholder="Your Email" class="w-full p-3 border rounded mb-4">
-            <textarea placeholder="Your Message" class="w-full p-3 border rounded mb-4"></textarea>
-            <button class="w-full border-2 border-black text-black py-3 rounded font-semibold hover:bg-black hover:text-white transition">Apply for Brand Deals</button>
+        <form id="contact-form" action="https://formspree.io/f/xbldazog" method="POST" class="mt-8 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md fade-in">
+            <input type="text" name="name" placeholder="Your Name" class="w-full p-3 border rounded mb-4" required>
+            <input type="email" name="email" placeholder="Your Email" class="w-full p-3 border rounded mb-4" required>
+            <textarea name="message" placeholder="Your Message" class="w-full p-3 border rounded mb-4" required></textarea>
+            <button type="submit" class="w-full border-2 border-black text-black py-3 rounded font-semibold hover:bg-black hover:text-white transition">
+                Apply for Brand Deals
+            </button>
+            <p id="success-message" class="hidden text-green-600 font-semibold mt-4 flex items-center justify-center">
+                ✅ Message sent, we will reply ASAP!
+            </p>
         </form>
     </section>
     
@@ -157,5 +162,29 @@
             document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
         });
     </script>
+
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            var form = this;
+            var formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("success-message").classList.remove("hidden");
+                    form.reset(); // Clear the form fields
+                } else {
+                    alert("Oops! Something went wrong, please try again.");
+                }
+            }).catch(error => {
+                alert("Error: Unable to send message.");
+            });
+        });
+    </script>    
 </body>
 </html>
