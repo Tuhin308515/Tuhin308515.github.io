@@ -6,7 +6,6 @@
     <title>Morp Central</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> <!-- Include EmailJS SDK -->
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
@@ -136,11 +135,11 @@
     <section id="contact" class="py-24 px-6 text-center bg-gray-50">
         <h2 class="text-4xl font-bold fade-in">Let’s Work Together</h2>
         <p class="mt-4 text-lg text-gray-600">Apply now to start getting brand deals.</p>
-        <form id="contact-form" class="mt-8 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md fade-in">
-            <input type="text" id="user_name" name="user_name" placeholder="Your Name" class="w-full p-3 border rounded mb-4" required>
-            <input type="email" id="user_email" name="user_email" placeholder="Your Email" class="w-full p-3 border rounded mb-4" required>
-            <textarea id="user_message" name="user_message" placeholder="Your Message" class="w-full p-3 border rounded mb-4" required></textarea>
-            <button type="submit" class="w-full border-2 border-black text-black py-3 rounded font-semibold hover:bg-black hover:text-white transition">Apply for Brand Deals</button>
+        <form class="mt-8 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md fade-in">
+            <input type="text" placeholder="Your Name" class="w-full p-3 border rounded mb-4">
+            <input type="email" placeholder="Your Email" class="w-full p-3 border rounded mb-4">
+            <textarea placeholder="Your Message" class="w-full p-3 border rounded mb-4"></textarea>
+            <button class="w-full border-2 border-black text-black py-3 rounded font-semibold hover:bg-black hover:text-white transition">Apply for Brand Deals</button>
         </form>
     </section>
     
@@ -152,32 +151,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
-        });
-
-        // Initialize EmailJS
-        emailjs.init("dQKRMg4zN2OtQtk9W");
-
-        // Handle form submission
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            // Get form values
-            const name = document.getElementById("user_name").value;
-            const email = document.getElementById("user_email").value;
-            const message = document.getElementById("user_message").value;
-
-            // Send the form data to EmailJS
-            emailjs.send("service_n8xdivg", "template_jj15jej", {
-                user_name: name,
-                user_email: email,
-                user_message: message
-            })
-            .then(function(response) {
-                alert("Message sent successfully!");
-                document.getElementById("contact-form").reset(); // Clear the form
-            }, function(error) {
-                alert("Failed to send message. Please try again later.");
-            });
         });
     </script>
 </body>
