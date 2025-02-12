@@ -68,7 +68,11 @@
     <!-- Hero Section with Video Background -->
     <section class="h-screen flex items-center justify-center text-center px-6 relative overflow-hidden">
         <!-- Video Background -->
-        <video id="video-background" autoplay muted loop class="video-background">
+        <video autoplay muted loop class="video-background">
+            <source src="assets/videos/video1.mp4" type="video/mp4">
+            <source src="assets/videos/video2.mp4" type="video/mp4">
+            <source src="assets/videos/video3.mp4" type="video/mp4">
+            <source src="assets/videos/video4.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <!-- Overlay -->
@@ -108,8 +112,8 @@
     <section id="about" class="py-24 px-6 text-center bg-gray-50">
         <h2 class="text-4xl font-bold fade-in">Who We Are</h2>
         <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-12 fade-in">
-            <img src="assets/pictures/tuhin.jpg" alt="Your Photo" class="w-48 h-48 rounded-full object-cover">
-            <img src="assets/pictures/ozair.png" alt="Friend's Photo" class="w-48 h-48 rounded-full object-cover">
+            <img src="your-photo.jpg" alt="Your Photo" class="w-48 h-48 rounded-full object-cover">
+            <img src="friend-photo.jpg" alt="Friend's Photo" class="w-48 h-48 rounded-full object-cover">
         </div>
         <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-600 fade-in">
             Morp Central is a leading influencer marketing agency, dedicated to helping YouTubers land high-quality brand deals. We handle the negotiations, so you can focus on creating amazing content. Whether you're a rising creator or an established influencer, we ensure you get the best partnerships that align with your brand.
@@ -133,7 +137,10 @@
         <p>&copy; 2024 Morp Central. All rights reserved.</p>
     </footer>
     
-    <!-- Link to the external JavaScript file -->
-    <script src="assets/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
+        });
+    </script>
 </body>
 </html>
