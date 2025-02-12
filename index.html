@@ -168,9 +168,9 @@
 
             // Send the form data to EmailJS
             emailjs.send("service_n8xdivg", "template_jj15jej", {
-                user_name: name,
-                user_email: email,
-                user_message: message
+                to_name: "Recipient Name", // Adjust according to your form (e.g. static name or dynamic)
+                from_name: name,           // User's name from the form
+                message: message           // User's message from the form
             })
             .then(function(response) {
                 alert("Message sent successfully!");
