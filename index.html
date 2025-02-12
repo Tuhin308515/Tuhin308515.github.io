@@ -6,7 +6,7 @@
     <title>Morp Central</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> <!-- Include EmailJS SDK -->
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
@@ -149,14 +149,13 @@
         <p>&copy; 2024 Morp Central. All rights reserved.</p>
     </footer>
     
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("dQKRMg4zN2OtQtk9W"); // Your public key here
+        })();
+    </script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
-        });
-
-        // Initialize EmailJS
-        emailjs.init("dQKRMg4zN2OtQtk9W");
-
         // Handle form submission
         document.getElementById("contact-form").addEventListener("submit", function(event) {
             event.preventDefault();
@@ -168,9 +167,10 @@
 
             // Send the form data to EmailJS
             emailjs.send("service_n8xdivg", "template_jj15jej", {
-                to_name: "Recipient Name", // Adjust according to your form (e.g. static name or dynamic)
+                to_name: name, // Adjust according to your form (e.g. static name or dynamic)
                 from_name: name,           // User's name from the form
-                message: message           // User's message from the form
+                message: message,          // User's message from the form
+                from_email: email          // User's email (optional)
             })
             .then(function(response) {
                 alert("Message sent successfully!");
