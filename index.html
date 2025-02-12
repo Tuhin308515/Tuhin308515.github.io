@@ -7,7 +7,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #cfbcbc; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #cfbcbc; /* Off-white, cream color */
+        }
+        .fade-in { 
+            opacity: 0; 
+            transform: translateY(10px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+        .fade-in.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Highlight effect on hover */
+        .service-box {
+            transition: background-color 0.3s ease;
+        }
+        .service-box:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+        }
+        /* Video background container */
         .video-background {
             position: absolute;
             top: 0;
@@ -16,20 +40,22 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.5; /* Reduced opacity for better text visibility */
         }
+        /* Overlay to ensure text is readable */
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
             z-index: -1;
         }
     </style>
 </head>
 <body class="text-black">
+    <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full bg-white shadow-md py-4 px-6 flex justify-between items-center z-50">
         <a href="#" class="text-xl font-bold">Morp Central</a>
         <ul class="flex space-x-6">
@@ -39,37 +65,81 @@
         </ul>
     </nav>
     
+    <!-- Hero Section with Video Background -->
     <section class="h-screen flex items-center justify-center text-center px-6 relative overflow-hidden">
-        <video id="videoPlayer" autoplay muted class="video-background">
-            <source id="videoSource" src="assets/videos/video1.mp4" type="video/mp4">
+        <!-- Video Background -->
+        <video autoplay muted loop class="video-background">
+            <source src="assets/videos/video1.mp4" type="video/mp4">
+            <source src="assets/videos/video2.mp4" type="video/mp4">
+            <source src="assets/videos/video3.mp4" type="video/mp4">
+            <source src="assets/videos/video4.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <!-- Overlay -->
         <div class="video-overlay"></div>
-        <div class="z-10">
+        <!-- Content -->
+        <div class="fade-in z-10">
             <h1 class="text-6xl font-extrabold leading-tight">Turn Your Influence Into Income</h1>
             <p class="mt-4 text-lg text-gray-600">We connect YouTubers with top brands, securing high-paying deals that fit your content.</p>
             <a href="#contact" class="mt-6 inline-block border-2 border-black text-black px-6 py-3 rounded-lg font-semibold hover:bg-black hover:text-white transition">Get Brand Deals Now</a>
         </div>
     </section>
     
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 text-center">
+        <h2 class="text-4xl font-bold fade-in">What We Do for Influencers</h2>
+        <div class="mt-12 grid md:grid-cols-2 gap-12 fade-in">
+            <div class="p-6 border rounded-lg service-box">
+                <h3 class="text-2xl font-semibold">Brand Partnerships</h3>
+                <p class="mt-2 text-gray-600">We connect you with top brands looking for creators like you.</p>
+            </div>
+            <div class="p-6 border rounded-lg service-box">
+                <h3 class="text-2xl font-semibold">Deal Negotiation</h3>
+                <p class="mt-2 text-gray-600">We negotiate the best rates, ensuring you get paid what you're worth.</p>
+            </div>
+            <div class="p-6 border rounded-lg service-box">
+                <h3 class="text-2xl font-semibold">Campaign Management</h3>
+                <p class="mt-2 text-gray-600">We handle contracts, deliverables, and communication.</p>
+            </div>
+            <div class="p-6 border rounded-lg service-box">
+                <h3 class="text-2xl font-semibold">Long-Term Sponsorships</h3>
+                <p class="mt-2 text-gray-600">We help you build lasting brand relationships.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section id="about" class="py-24 px-6 text-center bg-gray-50">
+        <h2 class="text-4xl font-bold fade-in">Who We Are</h2>
+        <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-12 fade-in">
+            <img src="your-photo.jpg" alt="Your Photo" class="w-48 h-48 rounded-full object-cover">
+            <img src="friend-photo.jpg" alt="Friend's Photo" class="w-48 h-48 rounded-full object-cover">
+        </div>
+        <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-600 fade-in">
+            Morp Central is a leading influencer marketing agency, dedicated to helping YouTubers land high-quality brand deals. We handle the negotiations, so you can focus on creating amazing content. Whether you're a rising creator or an established influencer, we ensure you get the best partnerships that align with your brand.
+        </p>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 text-center bg-gray-50">
+        <h2 class="text-4xl font-bold fade-in">Let’s Work Together</h2>
+        <p class="mt-4 text-lg text-gray-600">Apply now to start getting brand deals.</p>
+        <form class="mt-8 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md fade-in">
+            <input type="text" placeholder="Your Name" class="w-full p-3 border rounded mb-4">
+            <input type="email" placeholder="Your Email" class="w-full p-3 border rounded mb-4">
+            <textarea placeholder="Your Message" class="w-full p-3 border rounded mb-4"></textarea>
+            <button class="w-full border-2 border-black text-black py-3 rounded font-semibold hover:bg-black hover:text-white transition">Apply for Brand Deals</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-6 text-center bg-white text-gray-600">
+        <p>&copy; 2024 Morp Central. All rights reserved.</p>
+    </footer>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const videoPlayer = document.getElementById("videoPlayer");
-            const videoSource = document.getElementById("videoSource");
-            const videoFiles = [
-                "assets/videos/video1.mp4",
-                "assets/videos/video2.mp4",
-                "assets/videos/video3.mp4",
-                "assets/videos/video4.mp4"
-            ];
-            let currentIndex = 0;
-
-            videoPlayer.addEventListener("ended", () => {
-                currentIndex = (currentIndex + 1) % videoFiles.length;
-                videoSource.src = videoFiles[currentIndex];
-                videoPlayer.load();
-                videoPlayer.play();
-            });
+            document.querySelectorAll(".fade-in").forEach(el => el.classList.add("visible"));
         });
     </script>
 </body>
